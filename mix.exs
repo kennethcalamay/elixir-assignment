@@ -42,6 +42,7 @@ defmodule Assignment.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:absinthe, "~> 1.4"},
+      {:absinthe_plug, "~> 1.4.0"},
       {:tesla, "~> 1.3"}
     ]
   end
@@ -56,7 +57,8 @@ defmodule Assignment.MixProject do
     [
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate", "test"]
+      # test: ["ecto.create --quiet", "ecto.migrate", "test"]
+      test: ["test"]
     ]
   end
 end
