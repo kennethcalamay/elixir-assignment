@@ -38,8 +38,8 @@ defmodule AssignmentWeb.Schema.Query.WeatherForecastTest do
   """
   @variables %{
     input: %{
-      "latitude" => 52.3667,
-      "longitude" => 4.8945
+      "latitude" => "52.3667",
+      "longitude" => "4.8945"
     }
   }
   test "weatherForecast returns current weather with daily forecasts" do
@@ -86,7 +86,7 @@ defmodule AssignmentWeb.Schema.Query.WeatherForecastTest do
     }
   }
   """
-  @variables %{input: %{"latitude" => "52.36", "longitude" => "4.89"}}
+  @variables %{input: %{"latitude" => "abc", "longitude" => "4.89"}}
   test "weatherForecast invalidates string input" do
     conn = build_conn()
     conn = post conn, "/api", query: @query, variables: @variables
@@ -107,7 +107,7 @@ defmodule AssignmentWeb.Schema.Query.WeatherForecastTest do
     }
   }
   """
-  @variables %{input: %{"latitude" => 0.0, "longitude" => 0.0}}
+  @variables %{input: %{"latitude" => 0, "longitude" => 0}}
   test "weatherForecast returns error message when unsuccesful" do
     conn = build_conn()
     conn = post conn, "/api", query: @query, variables: @variables

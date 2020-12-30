@@ -3,30 +3,14 @@ defmodule AssignmentWeb.Schema do
 
   alias AssignmentWeb.Resolvers
 
+  import_types __MODULE__.WeatherTypes
+
   query do
     @desc "The weather forecast"
     field :weather_forecast, :weather_forecast do
       arg :input, non_null(:coordinate_input)
       resolve &Resolvers.current_weather_with_forecast/3
     end
-  end
-
-  @desc """
-  The input coordinate.
-
-  Technically to satisfy the requirement of passing a
-  string for lat and lon, e.g. "52.3667", "4.8945", we
-  could have chosen :string as the type for both of them.
-
-  But we can take advantage of Absinthe validating the
-  float requirement for us so I opted to use float instead.
-
-  Hopefully it's a small change on the client. Otherwise,
-  we can define our own scalar FloatString maybe.
-  """
-  input_object :coordinate_input do
-    field :latitude, non_null(:float)
-    field :longitude, non_null(:float)
   end
 
   @desc """
